@@ -41,6 +41,8 @@ namespace bank
         public static void InitDb()
         {
             using (var context = new SavingContext())
+            { 
+
 
                   context.Database.EnsureDeleted();
                   context.Database.EnsureCreated();
@@ -51,22 +53,24 @@ namespace bank
 
             //initialiser les données
 
-            List<SavingAccount> johnAccounts = new List<SavingAccount> {
+                    List<SavingAccount> johnAccounts = new List<SavingAccount>
+                    {
                 
                 
-              new SavingAccount(2000000, 0.05,true),
-                 new SavingAccount(250000, 0.015,false),
-                    new SavingAccount(10000000, 0.02,false),
+                              new SavingAccount(2000000, 0.05,true),
+                              new SavingAccount(250000, 0.015,false),
+                              new SavingAccount(10000000, 0.02,false),
 
-            };
-
-
-            Person richard = new Person("Mr Richard", johnAccounts);
-
-            context.Add(richard);
+                    };
 
 
-            context.SaveChanges();
+               Person richard = new Person("Mr Richard", johnAccounts);
+ 
+               context.Add(richard);
+
+
+                context.SaveChanges();
+            }
 
         }
     }

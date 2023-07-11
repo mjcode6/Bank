@@ -1,5 +1,6 @@
 ﻿using bank.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace bank.Controllers
@@ -15,7 +16,25 @@ namespace bank.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            using (var context = new SavingContext())
+            {
+                IQueryable<Person> query = context.Person.Where(p => p.Name == "Mr Richard");
+
+                // appliquer les filtre
+
+                query = query.Include(p => p.Savingaccounts);
+
+                Person richard = query.First();
+
+
+                return View(richard);
+            }
+
+
+
+
+
+            
         }
 
         public IActionResult Privacy()

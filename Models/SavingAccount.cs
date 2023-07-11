@@ -7,6 +7,11 @@
         public double Rate { get; set; }
         public bool IsRateByMonth { get; set; } 
 
+        public SavingAccount()
+        {
+
+        }
+
         public SavingAccount(double amount, double rate, bool isRateByMonth) 
         {
             SavingAccountId = Guid.NewGuid();
